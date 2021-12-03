@@ -36,7 +36,7 @@ public class BinaryTree {
         return current;
     }
 
-    
+
     private boolean containsNodeRecursive(Node current, int value){
 
         if (current == null){

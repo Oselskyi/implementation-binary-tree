@@ -1,10 +1,12 @@
 package binarytree;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BinaryTreeTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     void delete() {
 
         BinaryTree binaryTree = new BinaryTree();
@@ -18,7 +20,7 @@ class BinaryTreeTest {
 
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void containsNode() {
 
         BinaryTree binaryTree = new BinaryTree();
