@@ -7,6 +7,20 @@ import static org.junit.jupiter.api.Assertions.*;
 class BinaryTreeTest {
 
     @Test
+    void add() {
+
+        BinaryTree binaryTree = new BinaryTree();
+        binaryTree.add(6);
+        binaryTree.add(9);
+        binaryTree.add(7);
+
+        assertFalse(binaryTree.containsNode(3));
+        binaryTree.add(3);
+        assertTrue(binaryTree.containsNode(3));
+
+    }
+
+    @Test
     void delete() {
 
         BinaryTree binaryTree = new BinaryTree();
