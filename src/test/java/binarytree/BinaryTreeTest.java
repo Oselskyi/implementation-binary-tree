@@ -45,6 +45,17 @@ class BinaryTreeTest {
         assertTrue(binaryTree.containsNode(6));
         assertTrue(binaryTree.containsNode(4));
 
+
+    }
+    @Test
+    void isNotContainsNode() {
+
+        BinaryTree binaryTree = new BinaryTree();
+        binaryTree.add(6);
+        binaryTree.add(4);
+        binaryTree.add(7);
+
         assertFalse(binaryTree.containsNode(1));
     }
+
 }
