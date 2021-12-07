@@ -1,35 +1,45 @@
 package binarytree;
 
-public class BinaryTree {
+import java.util.stream.Stream;
 
-    Node root;
+public class BinaryTree<T extends Comparable> {
+
+    Node<T> root;
 
 
-    public void add(int value){
+    public static <T extends Comparable> BinaryTree<T> of(T... elements){
 
-        root = addRecursive(root,value);
+        BinaryTree<T> binaryTree = new BinaryTree<>();
+        Stream.of(elements).forEach(binaryTree::add);
+        return binaryTree;
     }
-    public void delete(int value){
+
+    public void add(T value){
+
+        root = addRecursive(root, value);
+    }
+
+    public void delete(T value){
 
         root = deleteRecursive(root, value);
     }
 
-    public boolean containsNode(int value){
+    public boolean containsNode(T value){
 
         return containsNodeRecursive(root, value);
     }
 
 
 
-    private Node addRecursive(Node current, int value){
+    private Node<T> addRecursive(Node<T> current, T value){
 
         if (current == null){
-            return new Node(value);
+            return new Node<T>(value);
         }
 
-        if (value < current.value){
+        if (current.value.compareTo(value) > 0){
             current.left = addRecursive(current.left, value);
-        } else if (value > current.value){
+        } else if (current.value.compareTo(value) < 0){
             current.right = addRecursive(current.right, value);
         } else return current;
 
@@ -37,25 +47,25 @@ public class BinaryTree {
     }
 
 
-    private boolean containsNodeRecursive(Node current, int value){
+    private boolean containsNodeRecursive(Node<T> current, T value){
 
         if (current == null){
             return false;
         }
-        if (value == current.value){
+        if (current.value.equals(value)){
             return true;
         }
 
-        return value < current.value ? containsNodeRecursive(current.left, value)
+        return current.value.compareTo(value) > 0 ? containsNodeRecursive(current.left, value)
                 : containsNodeRecursive(current.right, value);
     }
 
-    private Node deleteRecursive(Node current, int value){
+    private Node<T> deleteRecursive(Node<T> current, T value){
         if (current == null){
             return null;
         }
 
-        if (value == current.value){
+        if (current.value.compareTo(value) == 0){
 
             if(current.left == null && current.right == null){
                 return null;
@@ -69,14 +79,14 @@ public class BinaryTree {
                 return current.right;
             }
 
-            int smallestValue = findSmallestValue(current.right);
+            T smallestValue = findSmallestValue(current.right);
             current.value = smallestValue;
             current.right = deleteRecursive(current.right, smallestValue);
             return current;
 
         }
 
-        if (value < current.value){
+        if (current.value.compareTo(value) > 0){
             current.left = deleteRecursive(current.left,value);
         }else current.right = deleteRecursive(current.right, value);
 
@@ -84,8 +94,8 @@ public class BinaryTree {
     }
 
 
-    private int findSmallestValue(Node root){
+    private T findSmallestValue(Node<T> root){
 
-        return root.left == null ? root.value : findSmallestValue(root.left);
+        return root.left == null ?  root.value : findSmallestValue(root.left);
     }
 }

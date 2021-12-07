@@ -1,13 +1,14 @@
 package binarytree;
 
-public class Node {
+public class Node<T extends Comparable> {
 
-    int value;
-    Node right, left;
+    T value;
+    Node<T> right, left;
 
-    public Node(int value) {
+    public Node(T value) {
         this.value = value;
         right = null;
         left = null;
     }
+
 }

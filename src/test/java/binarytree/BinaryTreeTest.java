@@ -7,26 +7,24 @@ import static org.junit.jupiter.api.Assertions.*;
 class BinaryTreeTest {
 
     @Test
+    public void createBinaryTree() {
+        BinaryTree<Integer> binaryTree = new BinaryTree<>();
+    }
+
+    @Test
     void add() {
+        BinaryTree<String> binaryTree = BinaryTree.of("6", "9", "7");
 
-        BinaryTree binaryTree = new BinaryTree();
-        binaryTree.add(6);
-        binaryTree.add(9);
-        binaryTree.add(7);
-
-        assertFalse(binaryTree.containsNode(3));
-        binaryTree.add(3);
-        assertTrue(binaryTree.containsNode(3));
+        assertFalse(binaryTree.containsNode("3"));
+        binaryTree.add("3");
+        assertTrue(binaryTree.containsNode("3"));
 
     }
 
     @Test
     void delete() {
 
-        BinaryTree binaryTree = new BinaryTree();
-        binaryTree.add(6);
-        binaryTree.add(9);
-        binaryTree.add(7);
+        BinaryTree<Integer> binaryTree = BinaryTree.of(6, 9, 7);
 
         assertTrue(binaryTree.containsNode(9));
         binaryTree.delete(9);
@@ -37,25 +35,21 @@ class BinaryTreeTest {
     @Test
     void containsNode() {
 
-        BinaryTree binaryTree = new BinaryTree();
-        binaryTree.add(6);
-        binaryTree.add(4);
-        binaryTree.add(7);
+        BinaryTree<Integer> binaryTree = BinaryTree.of(6, 9, 7, 4);
 
         assertTrue(binaryTree.containsNode(6));
         assertTrue(binaryTree.containsNode(4));
 
 
     }
+
     @Test
     void isNotContainsNode() {
 
-        BinaryTree binaryTree = new BinaryTree();
-        binaryTree.add(6);
-        binaryTree.add(4);
-        binaryTree.add(7);
+        BinaryTree<Integer> binaryTree = BinaryTree.of(6, 9, 7);
 
         assertFalse(binaryTree.containsNode(1));
     }
+
 
 }
