@@ -1,5 +1,6 @@
 package binarytree;
 
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 public class BinaryTree<T extends Comparable> {
@@ -97,5 +98,19 @@ public class BinaryTree<T extends Comparable> {
     private T findSmallestValue(Node<T> root){
 
         return root.left == null ?  root.value : findSmallestValue(root.left);
+    }
+
+    public void traversalInOrder(Consumer<T> consumer) {
+
+        traversalInOrder(root, consumer);
+    }
+
+    public void traversalInOrder(Node<T> root,Consumer<T> consumer) {
+
+        if (root != null){
+            traversalInOrder(root.left,consumer);
+            consumer.accept(root.value);
+            traversalInOrder(root.right,consumer);
+        }
     }
 }

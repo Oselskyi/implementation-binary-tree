@@ -2,6 +2,11 @@ package binarytree;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BinaryTreeTest {
@@ -51,5 +56,14 @@ class BinaryTreeTest {
         assertFalse(binaryTree.containsNode(1));
     }
 
+    @Test
+    void traversalInOrder(){
+        BinaryTree<Integer> binaryTree = BinaryTree.of(100, 26, 6 , 89, 7, 42, 11);
+        List<Integer> trueList = Arrays.asList(6, 7, 11, 26, 42, 89, 100);
+
+        List<Integer> list = new ArrayList<>();
+        binaryTree.traversalInOrder(list::add);
+        assertEquals(trueList ,list);
+    }
 
 }
