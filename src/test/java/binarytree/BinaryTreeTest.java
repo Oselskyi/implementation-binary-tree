@@ -65,5 +65,14 @@ class BinaryTreeTest {
         binaryTree.traversalInOrder(list::add);
         assertEquals(trueList ,list);
     }
+    @Test
+    void traversalInOrderString(){
+        BinaryTree<String> binaryTree = BinaryTree.of("X", "Q", "K" , "N", "T", "B", "C");
+        List<String> trueList = Arrays.asList("B", "C", "K", "N", "Q", "T", "X");
+
+        List<String> list = new ArrayList<>();
+        binaryTree.traversalInOrder(list::add);
+        assertEquals(trueList ,list);
+    }
 
 }
